@@ -36,7 +36,7 @@ exports.postQuack = (req, res) => {
     }
     dbAuth()
         const newQuack = {
-            userId: req.body.userId
+            userId: req.body.userId,
         }
         db.collection('quacks').add(newQuack)
         .then(() => {
