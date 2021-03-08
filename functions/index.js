@@ -1,13 +1,19 @@
 const functions = require("firebase-functions");
 const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
 const cors = require("cors");
 
-const {getQuacks, postQuack} = require('./src/quack-index')
+const { getQuacks, postQuack } = require("./src/quack-index");
+app.use(cors());
+app.use(bodyParser.json());
 
-const app = express()
-app.use(cors())
+
+
+
+// app.get("/quacks", getQuacks);
 
 app.get('/quacks/:userId', getQuacks)
-app.post('/quacks/userId', postQuack)
+app.post('/quacks/:userId', postQuack)
 
-exports.app = functions.https.onRequest(app)
+exports.app = functions.https.onRequest(app);
