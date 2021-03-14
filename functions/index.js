@@ -4,16 +4,12 @@ const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
 
-const { getQuacks, postQuack } = require("./src/quack-index");
+const { getQuacks, postQuack, deleteQuack } = require("./src/quack-index");
 app.use(cors());
 app.use(bodyParser.json());
 
-
-
-
-// app.get("/quacks", getQuacks);
-
 app.get('/quacks/:userId', getQuacks)
 app.post('/quacks/:userId', postQuack)
+app.delete('/quacks/:quacksId', deleteQuack)
 
 exports.app = functions.https.onRequest(app);
